@@ -2,11 +2,15 @@
 console.log('Welcome to Holberton School, what is your name?');
 
 // Read user input
-process.stdin.on('data', (data) => {
-  const input = data.toString().trim();
-  console.log(`Your name is: ${input}`);
+process.stdin.on('readable', () => {
+  const name = process.stdin.read();
 
-  // Exit message
-  console.log('This important software is now closing');
-  process.exit();
+  if (name !== null) {
+    process.stdout.write(`Your name is: ${name}`);
+  }
+});
+
+// Close message
+process.stdin.on('end', () => {
+  process.stdout.write('This important software is now closing\n');
 });
