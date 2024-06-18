@@ -3,7 +3,7 @@ const fs = require('fs');
 function countStudents(filePath) {
   try {
     const data = fs.readFileSync(filePath, 'utf-8'); // Read file synchronously
-    const lines = data.split('\n').filter(line => line.trim() !== ''); // Remove empty lines
+    const lines = data.split('\n').filter((line) => line.trim() !== ''); // Remove empty lines
 
     if (lines.length <= 1) {
       throw new Error('Cannot load the database');
@@ -13,7 +13,7 @@ function countStudents(filePath) {
     const fieldCounts = {};
     const fieldStudents = {};
 
-    students.forEach(student => {
+    students.forEach((student) => {
       const [firstname, , , field] = student.split(',');
 
       if (field) {
